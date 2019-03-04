@@ -1,0 +1,17 @@
+#header_block{
+    text-align:center;
+    width:100%;
+    background-color:darkturquoise;
+    margin-bottom:10px;
+}
+
+#landing_page_background{
+    background-color:aliceblue;
+}
+#middle_block{
+    margin:auto;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

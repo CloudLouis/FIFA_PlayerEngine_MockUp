@@ -1,0 +1,13 @@
+#header_block{
+    text-align:center;
+    width:100%;
+    background-color:darkturquoise;
+    margin-bottom:10px;
+}
+#content_block{
+    margin:10px;
+}
+#to_index_button{
+    width:100%;
+    text-align:center;
+}

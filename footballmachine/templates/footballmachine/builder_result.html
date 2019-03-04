@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Team Builder</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'footballmachine/result_style.css' %}"/>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    </head>
+    <body>
+        <div id="header_block">
+            <h1 id="title_head"> Team builder result </h1>
+        </div>
+        <div id="content_block">
+            <form id="to_index_button" action="{% url 'footballmachine:index'%}">
+                <button class="ui button">Back to home</button>
+            </form>
+        {% if team %}
+            <div>
+                <h4>Budget: {{budget}}</h4>
+                <h4>Total players value: {{total_player_value}}</h4>
+            </div>
+            <table id="player_table" class="ui celled table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Nationality</th>
+                        <th>Club</th>
+                        <th>Photo</th>
+                        <th>Overall</th>
+                        <th>Value</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in team %}
+                        <tr>
+                            <td>{{p.Name}}</td>
+                            <td>{{p.Age}}</td>
+                            <td>{{p.Nationality}}</td>
+                            <td>{{p.Club}}</td>
+                            <td><img src="{{p.Photo}}"></img></td>
+                            <td>{{p.Overall}}</td>
+                            <td>{{p.Value}}</td>
+                            <td>{{p.Position}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Whoops something went wrong</p>
+    {% endif %}
+    </div>
+    </body>
+</html>

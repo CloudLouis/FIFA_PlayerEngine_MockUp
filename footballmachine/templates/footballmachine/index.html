@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FIFA Players Engine</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'footballmachine/style.css' %}">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/se/jq-3.3.1/dt-1.10.18/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/se/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
+    </head>
+    <body id = "landing_page_background">
+        <div id="header_block">
+            <h1 id="title_head">Players Engine</h1>
+        </div>
+        <div id="middle_block">
+                <button id="search_button" class="ui button">Player search</button>
+                <button id="builder_button" class="ui button">Team builder</button>
+            <form id ="search_form" action="{%url 'footballmachine:search_result' %}" method="post">
+                {% csrf_token %}
+                <b style="margin:5px">Search Players by:</b>
+                    <select name="criteria" style="margin:5px">
+                      <option value="Name">Name</option>
+                      <option value="Club">Club</option>
+                      <option value="Nationality">Nationality</option>
+                    </select>
+                <div class="ui input">
+                    <input placeholder="Search..." style="margin:5px" type="text" name="query">
+                </div>
+                <input class="ui button active" style="margin:5px" type="submit" value="Submit">
+            </form>
+            <div class="ui form" style="margin-top:15px">
+                <form id ="builder_form" action="{%url 'footballmachine:builder_result' %}" method="get">
+                    {% csrf_token %}
+                      <div class="field">
+                        <b>Team's budget:</b><br>
+                        <input type="number" name="budget"></textarea>
+                      </div>
+                    <input class="ui button active" type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    $(document).ready(function(){
+        $("#builder_form").hide();
+    });
+    $("#search_button").click(function(){
+        $("#search_form").show();
+        $("#builder_form").hide();
+    });
+    $("#builder_button").click(function(){
+        $("#search_form").hide();
+        $("#builder_form").show();
+    });
+</script>
